@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Imagens com texto editável dentro - impressão A4</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px 15mm 15mm 15mm;
+    width: 210mm;
+    height: 297mm;
+    background: #f9f9f9;
+  }
+  .sheet {
+    width: 210mm;
+    height: 297mm;
+    box-sizing: border-box;
+    padding: 15mm;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10mm;
+    background: white;
+    border: 1px solid #ccc;
+  }
+  .image-container {
+    position: relative;
+    width: calc( (210mm - 30mm - 30mm) / 2 );
+    aspect-ratio: 1 / 1;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+    .image-container2 {
+    position: relative;
+    width: calc( (210mm - 25mm - 30mm) / 2 );
+
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+    .image-container2 img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .text-overlay {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    right: 8%;
+    bottom: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(12px);
+    font-weight: bold;
+    color: black;
+    pointer-events: none;
+    user-select: none;
+    padding: 3px;
+  }
+
+    .text-overlay2 {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    right: 8%;
+    bottom: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(10px);
+    font-weight: bold;
+    color: black;
+    pointer-events: none;
+    user-select: none;
+    padding: 3px;
+  }
+
+   .text-overlay3 {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    right: 8%;
+    bottom: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(12px);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    pointer-events: none;
+    user-select: none;
+    padding: 3px;
+  }
+
+   .text-overlay4 {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    right: 8%;
+    bottom: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: calc(10px);
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    pointer-events: none;
+    user-select: none;
+    padding: 3px;
+  }
+
+  #print-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 1000;
+  }
+  #print-btn:hover {
+    background: #0056b3;
+  }
+  form {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+  }
+  .input-group {
+    flex: 1 1 30%;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+    .input-group2 {
+    flex: 1 1 30%;
+    min-width: 180px;
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 40px;
+    font-size: 13px;
+    padding: 6px;
+  }
+
+  @media print {
+  form,
+  #print-btn {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .sheet {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<button id="print-btn" title="Imprimir página">🖨️ Imprimir</button>
+
+<form id="textForm" autocomplete="off" spellcheck="false">
+  <div class="input-group">
+    <label for="text1">Texto Coração</label>
+    <textarea id="text1" rows="2" placeholder="Digite o texto para Coração Azul"></textarea>
+  </div>
+  <div class="input-group2">
+    <label for="text2">Texto Estrela</label>
+    <textarea id="text2" rows="2" placeholder="Digite o texto para Coração Branco"></textarea>
+  </div>
+</form>
+
+<div class="sheet" id="sheet">
+
+  <div class="image-container">
+    <img src="IMG/CORAÇÃO AZUL.png" alt="Coração Azul" />
+    <div class="text-overlay3" id="overlay1"></div>
+  </div>
+  <div class="image-container">
+    <img src="IMG/CORAÇÃO BRANCO.png" alt="Coração Branco" />
+    <div class="text-overlay" id="overlay2"></div>
+  </div>
+  <div class="image-container">
+    <img src="IMG/CORAÇÃO VERMELHO.png" alt="Coração Vermelho" />
+    <div class="text-overlay" id="overlay3"></div>
+  </div>
+  <div class="image-container2">
+    <img src="IMG/ESTRELA AZUL.png" alt="Estrela Azul" />
+    <div class="text-overlay4" id="overlay4"></div>
+  </div>
+  <div class="image-container2">
+    <img src="IMG/ESTRELA BRANCA.png" alt="Estrela Branca" />
+    <div class="text-overlay2" id="overlay5"></div>
+  </div>
+  <div class="image-container2">
+    <img src="IMG/ESTRELA VERMELHA.png" alt="Estrela Vermelha" />
+    <div class="text-overlay2" id="overlay6"></div>
+  </div>
+
+</div>
+
+<script>
+  // Atualiza texto dentro das imagens quando o usuário digita
+  function updateText(idTextarea, idOverlay) {
+    const textarea = document.getElementById(idTextarea);
+    const overlay = document.getElementById(idOverlay);
+    textarea.addEventListener('input', () => {
+      overlay.textContent = textarea.value;
+    });
+  }
+
+  updateText('text1', 'overlay1');
+  updateText('text1', 'overlay2');
+  updateText('text1', 'overlay3');
+  updateText('text2', 'overlay4');
+  updateText('text2', 'overlay5');
+  updateText('text2', 'overlay6');
+
+  // Botão imprimir
+  document.getElementById('print-btn').addEventListener('click', () => {
+    window.print();
+  });
+</script>
+
+</body>
+</html>
